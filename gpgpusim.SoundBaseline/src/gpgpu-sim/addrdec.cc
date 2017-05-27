@@ -109,7 +109,7 @@ void linear_to_raw_address_translation::addrdec_tlx(new_addr_type addr, addrdec_
         //change linear address mapping to XOR
         if(g_enable_xor_mapping){
            unsigned b = (addr>>ADDR_CHIP_S) % m_n_channel;
-           unsigned a = ((addr>>ADDR_CHIP_S)>>7) % m_n_channel;
+           unsigned a = ((addr>>ADDR_CHIP_S)>>ADDR_CHIP_S) % m_n_channel;
            addr_for_chip = (a^b)%m_n_channel;
            tlx->chip = addr_for_chip;
            //printf("no gap, g_enable_xor_mapping=%d, m_n_channel=%d, a=%d, b=%d, addr_for_chip(xor)=%d, addr_for_chip(linear)=%d\n", g_enable_xor_mapping, m_n_channel, a, b, addr_for_chip, b);fflush(stdout);
@@ -131,7 +131,7 @@ void linear_to_raw_address_translation::addrdec_tlx(new_addr_type addr, addrdec_
         //change linear address mapping to XOR
         if(g_enable_xor_mapping){
            unsigned b = (addr>>ADDR_CHIP_S) % m_n_channel;
-           unsigned a = ((addr>>ADDR_CHIP_S)>>7) % m_n_channel;
+           unsigned a = ((addr>>ADDR_CHIP_S)>>ADDR_CHIP_S) % m_n_channel;
            addr_for_chip = (a^b)% m_n_channel;
            //printf("with gap, g_enable_xor_mapping=%d, m_n_channel=%d, a=%d, b=%d, addr_for_chip(xor)=%d, addr_for_chip(linear)=%d\n", g_enable_xor_mapping, m_n_channel, a, b, addr_for_chip, b);fflush(stdout);
         }

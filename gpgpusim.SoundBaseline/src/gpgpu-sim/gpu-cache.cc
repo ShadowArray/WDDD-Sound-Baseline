@@ -97,10 +97,8 @@ unsigned l1d_cache_config::set_index(new_addr_type addr) const{
         break;
     
     case BXOR_SET_FUNCTION:
-	//printf("I am here, l1d, 1\n"); fflush(stdout);
 	b = (addr >> (m_line_sz_log2)) & (m_nset-1);
-	//a = ((addr >> m_line_sz_log2) >> m_nset_log2 ) & (m_nset-1);
-	a = ((addr >> m_line_sz_log2) >> 7 ) & (m_nset-1);
+	a = ((addr >> m_line_sz_log2) >> m_line_sz_log2 ) & (m_nset-1);
 	set_index = a^b;
 	break;
 
@@ -230,7 +228,7 @@ unsigned l2_cache_config::set_index(new_addr_type addr) const{
     
     case BXOR_SET_FUNCTION:
 	b = (addr >> (m_line_sz_log2)) & (m_nset-1);
-	a = ((addr >> m_line_sz_log2) >> m_nset_log2 ) & (m_nset-1);
+	a = ((addr >> m_line_sz_log2) >> m_line_sz_log2 ) & (m_nset-1);
 	set_index = a^b;
 	break;
 
@@ -355,9 +353,8 @@ unsigned l2_cache_config::set_index(new_addr_type addr) const{
         break;
     
     case BXOR_SET_FUNCTION:
-	//printf("I am here, l2, 2\n"); fflush(stdout);
 	b = (part_addr >> (m_line_sz_log2)) & (m_nset-1);
-	a = ((part_addr >> m_line_sz_log2) >> m_nset_log2 ) & (m_nset-1);
+	a = ((part_addr >> m_line_sz_log2) >> m_line_sz_log2 ) & (m_nset-1);
 	set_index = a^b;
 	break;
 
